@@ -1,10 +1,20 @@
 #include "callbacks.h"
 #include "helpers.h"
+#include <FL/Fl_Text_Editor.H>
 
 extern Fl_Text_Buffer *app_text_buffer;
+extern Fl_Text_Editor *app_editor;
 
 extern bool text_changed;
 extern char app_filename[FL_PATH_MAX];
+
+void text_changed_callback(int, int n_inserted, int n_deleted, int, const char*, void*)
+{
+	if (n_inserted || n_deleted)
+		set_changed(true);
+}
+
+///////////////////////// MENU FILE CALLBACKS /////////////////////////
 
 void menu_quit_callback(Fl_Widget *, void *)
 {
@@ -22,12 +32,6 @@ void menu_quit_callback(Fl_Widget *, void *)
 		}
 	}
 	Fl::hide_all_windows();
-}
-
-void text_changed_callback(int, int n_inserted, int n_deleted, int, const char*, void*)
-{
-	if (n_inserted || n_deleted)
-		set_changed(true);
 }
 
 void menu_new_callback(Fl_Widget*, void*)
@@ -111,4 +115,36 @@ void menu_open_callback(Fl_Widget*, void*)
 
 	if (file_chooser.show() == 0)
 		load(file_chooser.filename());
+}
+
+
+///////////////////////// MENU EDIT CALLBACKS /////////////////////////
+
+void menu_cut_callback(Fl_Widget*, void *v)
+{
+	Fl_Text_Editor::kf_cut(0, app_editor);
+}
+
+void menu_copy_callback(Fl_Widget*, void *v)
+{
+	Fl_Text_Editor::kf_copy(0, app_editor);
+}
+void menu_paste_callback(Fl_Widget*, void *v)
+{
+	Fl_Text_Editor::kf_paste(0, app_editor);
+}
+
+void menu_delete_callback(Fl_Widget*, void *v)
+{
+	Fl_Text_Editor::kf_delete(0, app_editor);
+}
+
+void menu_undo_callback(Fl_Widget*, void *v)
+{
+	Fl_Text_Editor::kf_undo(0, app_editor);
+}
+
+void menu_redo_callback(Fl_Widget*, void *v)
+{
+	Fl_Text_Editor::kf_redo(0, app_editor);
 }

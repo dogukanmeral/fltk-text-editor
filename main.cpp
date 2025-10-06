@@ -1,11 +1,9 @@
-#include <FL/Fl_Menu_Item.H>
 #include <FL/platform.H>
 #include <FL/Fl.H>
 #include <FL/Fl_Menu_Bar.H>
 #include <FL/Fl_Text_Editor.H>
 #include <FL/Fl_Text_Buffer.H>
 #include <FL/Fl_Double_Window.H>
-#include <FL/platform_types.h>
 #include "helpers.h"
 #include "callbacks.h"
 
@@ -26,15 +24,13 @@ void build_app_menu_bar()
 	app_menu_bar->add("File/Save", FL_COMMAND+'s', menu_save_callback);
 	app_menu_bar->add("File/Save as...", FL_COMMAND+'S', menu_saveas_callback, NULL, FL_MENU_DIVIDER);
     app_menu_bar->add("File/Quit Editor", FL_COMMAND+'q', menu_quit_callback);
-
-	app_menu_bar->add("Edit/Undo", FL_COMMAND+'z', menu_undo_callback);
-	app_menu_bar->add("Edit/Redo", FL_COMMAND+'Z', menu_redo_callback, NULL, FL_MENU_DIVIDER);
-	app_menu_bar->add("Edit/Cut", FL_COMMAND+'x', menu_cut_callback);
-	app_menu_bar->add("Edit/Copy", FL_COMMAND+'c', menu_copy_callback);
-	app_menu_bar->add("Edit/Paste", FL_COMMAND+'v', menu_paste_callback);
-	app_menu_bar->add("Edit/Delete", 0, menu_delete_callback);
-
+    //app_window->callback(menu_quit_callback);
     app_window->end();
+
+    //int ix = app_menu_bar->find_index(menu_quit_callback);
+	//app_menu_bar->insert(ix, "Open", FL_COMMAND+'o', menu_open_callback, NULL, FL_MENU_DIVIDER);
+	//app_menu_bar->insert(ix+1, "Save", FL_COMMAND+'s', menu_save_callback);
+	//app_menu_bar->insert(ix+2, "Save as...", FL_COMMAND+'S', menu_saveas_callback, NULL, FL_MENU_DIVIDER);
 }
 
 void build_main_editor()
@@ -47,6 +43,9 @@ void build_main_editor()
 	app_editor->textfont(FL_COURIER);
 	app_window->resizable(app_editor);
 	app_window->end();
+
+	//int ix = app_menu_bar->find_index(menu_quit_callback);
+	//app_menu_bar->insert(ix, "New", FL_COMMAND+'n', menu_new_callback);
 }
 
 int args_handler(int argc, char **argv, int &i)
@@ -75,5 +74,7 @@ int main(int argc, char **argv)
 	app_window = new Fl_Double_Window(640, 480, "Text Editor");
 	build_app_menu_bar();
 	build_main_editor();
+	// app_window->show(argc, argv);
+	// return Fl::run();
 	return handle_args_and_run(argc, argv);
 }

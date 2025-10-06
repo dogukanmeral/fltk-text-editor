@@ -26,4 +26,9 @@ void menu_delete_callback(Fl_Widget*, void *v);
 void menu_undo_callback(Fl_Widget*, void *v);
 void menu_redo_callback(Fl_Widget*, void *v);
 
+/* MENU FIND CALLBACKS */
+
+void menu_find_callback(Fl_Widget*, void *v);
+void menu_find_next_callback(Fl_Widget*, void *v);
+
 #endif /* CALLBACKS_H */

@@ -1,7 +1,10 @@
 #include "helpers.h"
+#include <FL/fl_ask.H>
 
 extern Fl_Text_Buffer *app_text_buffer;
 extern Fl_Double_Window *app_window;
+extern Fl_Text_Editor *app_editor;
+
 extern bool text_changed;
 extern char app_filename[FL_PATH_MAX];
 
@@ -63,5 +66,22 @@ void load(char const *filename)
 	else
 	{
 		fl_alert("Failed to load file: \'%s\'\n%s", filename, strerror(errno));
+	}
+}
+
+void find_next(const char *needle)
+{
+	int pos = app_editor->insert_position();
+	int found = app_text_buffer->search_forward(pos, needle, &pos);
+	
+	if (found)
+	{
+		app_text_buffer->select(pos	, pos + (int)strlen(needle));
+		app_editor->insert_position(pos + (int)strlen(needle));
+		app_editor->show_insert_position();
+	}
+	else
+	{
+		fl_alert("No further occurences of '%s' found!", needle);
 	}
 }

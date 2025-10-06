@@ -1,10 +1,14 @@
 #include "callbacks.h"
 #include "helpers.h"
 #include <FL/Fl_Text_Editor.H>
+#include <FL/Fl_Widget.H>
+#include <FL/fl_ask.H>
+#include <FL/fl_string_functions.h>
 
 extern Fl_Text_Buffer *app_text_buffer;
 extern Fl_Text_Editor *app_editor;
 
+extern char last_find_text[1024];
 extern bool text_changed;
 extern char app_filename[FL_PATH_MAX];
 
@@ -147,4 +151,28 @@ void menu_undo_callback(Fl_Widget*, void *v)
 void menu_redo_callback(Fl_Widget*, void *v)
 {
 	Fl_Text_Editor::kf_redo(0, app_editor);
+}
+
+///////////////////////// MENU FIND CALLBACKS /////////////////////////
+
+void menu_find_callback(Fl_Widget*, void *v)
+{
+	const char *find_text = fl_input("Find in text:", last_find_text);
+	if (find_text)
+	{
+		fl_strlcpy(last_find_text, find_text, sizeof(last_find_text));
+		find_next(find_text);
+	}
+}
+
+void menu_find_next_callback(Fl_Widget*, void *v)
+{
+	if (last_find_text[0])
+	{
+		find_next(last_find_text);
+	}
+	else
+	{
+		menu_find_callback(NULL, NULL);
+	}
 }

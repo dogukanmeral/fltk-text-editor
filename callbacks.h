@@ -31,4 +31,8 @@ void menu_redo_callback(Fl_Widget*, void *v);
 void menu_find_callback(Fl_Widget*, void *v);
 void menu_find_next_callback(Fl_Widget*, void *v);
 
+/* MENU REPLACE CALLBACKS */
+void menu_replace_callback(Fl_Widget*, void *v);
+void menu_replace_next_callback(Fl_Widget*, void *v);
+
 #endif /* CALLBACKS_H */

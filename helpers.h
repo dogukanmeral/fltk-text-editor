@@ -15,5 +15,6 @@ void set_changed(bool v);
 void set_filename(const char *new_filename);
 void load(char const *filename);
 void find_next(const char *needle);
+void replace_selection(const char *new_text);
 
 #endif /* HELPERS_H */

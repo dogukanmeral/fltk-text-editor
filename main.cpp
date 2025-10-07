@@ -8,13 +8,18 @@
 #include <FL/platform_types.h>
 #include "helpers.h"
 #include "callbacks.h"
+#include "replace_dialog.h"
+
 
 Fl_Text_Editor *app_editor = NULL;
 Fl_Text_Buffer *app_text_buffer = NULL;
 Fl_Double_Window *app_window = NULL;
 Fl_Menu_Bar *app_menu_bar = NULL;
 
+Replace_Dialog *replace_dialog = NULL;	
+
 char last_find_text[1024] = "";
+char last_replace_text[1024] = "";
 bool text_changed = false;
 char app_filename[FL_PATH_MAX] = "";
 
@@ -38,6 +43,9 @@ void build_app_menu_bar()
 
 	app_menu_bar->add("Find/Find...", FL_COMMAND+'f', menu_find_callback);
 	app_menu_bar->add("Find/Find Next", FL_COMMAND+'g', menu_find_next_callback, NULL, FL_MENU_DIVIDER);
+
+	app_menu_bar->add("Find/Replace...", FL_COMMAND+'r', menu_replace_callback);
+	app_menu_bar->add("Find/Replace Next", FL_COMMAND+'t', menu_replace_next_callback);
 
     app_window->end();
 }

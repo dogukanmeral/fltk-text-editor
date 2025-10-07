@@ -5,6 +5,7 @@ extern Fl_Text_Buffer *app_text_buffer;
 extern Fl_Double_Window *app_window;
 extern Fl_Text_Editor *app_editor;
 
+extern char last_replace_text[1024];
 extern bool text_changed;
 extern char app_filename[FL_PATH_MAX];
 
@@ -83,5 +84,18 @@ void find_next(const char *needle)
 	else
 	{
 		fl_alert("No further occurences of '%s' found!", needle);
+	}
+}
+
+void replace_selection(const char *new_text)
+{
+	int start, end;
+	if (app_text_buffer->selection_position(&start, &end))
+	{
+		app_text_buffer->remove_selection();
+		app_text_buffer->insert(start, new_text);
+		app_text_buffer->select(start, start + (int)strlen(new_text));
+		app_editor->insert_position(start + (int)strlen(new_text));
+		app_editor->show_insert_position();
 	}
 }

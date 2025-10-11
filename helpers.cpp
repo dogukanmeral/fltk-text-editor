@@ -1,14 +1,4 @@
 #include "helpers.h"
-#include <FL/fl_ask.H>
-
-extern Fl_Text_Buffer *app_text_buffer;
-extern Fl_Double_Window *app_window;
-extern Fl_Text_Editor *app_editor;
-
-extern char last_replace_text[1024];
-extern bool text_changed;
-extern char app_filename[FL_PATH_MAX];
-
 
 void update_title()
 {

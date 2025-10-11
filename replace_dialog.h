@@ -1,6 +1,8 @@
 #ifndef REPLACE_DIALOG_H
 #define REPLACE_DIALOG_H
 
+#include "helpers.h"
+
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Double_Window.H>
 #include <FL/Fl_Input.H>
@@ -8,6 +10,9 @@
 #include <FL/Fl_Flex.H>
 #include <FL/Fl_Widget.H>
 #include <FL/fl_string_functions.h>
+
+extern char last_find_text[1024];
+extern char last_replace_text[1024];
 
 class Replace_Dialog : public Fl_Double_Window
 {

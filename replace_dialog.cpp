@@ -1,8 +1,4 @@
-#include "helpers.h"
 #include "replace_dialog.h"
-
-extern char last_find_text[1024];
-extern char last_replace_text[1024];
 
 Replace_Dialog::Replace_Dialog(const char *label) : Fl_Double_Window(430, 110, label)
 {

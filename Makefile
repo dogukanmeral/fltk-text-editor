@@ -8,7 +8,7 @@ EXE=text-editor
 all: $(OBJ) $(EXE)
 
 $(EXE): $(OBJ)
-	$(CXX) $^ $(LDFLAGS) -o $@ && rm -rf *.o
+	$(CXX) $^ $(LDFLAGS) -o $@
 
 %.o: %.c
 	$(CXX) -c $< -o $@

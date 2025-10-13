@@ -3,3 +3,7 @@ Simple text editor written in C++ using FLTK toolkit. Currently under developmen
 This one is being developed on FLTK 1.4.4
 
 <img width="648" height="507" alt="image" src="https://github.com/user-attachments/assets/0c3302d2-7425-443f-b977-36168e408790" />
+
+## To Make
+
+fltk-config and fltk libraries are required to build the application (version 1.4.4).

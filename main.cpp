@@ -1,3 +1,4 @@
+#include <FL/Enumerations.H>
 #include <FL/Fl_Menu_Item.H>
 #include <FL/platform.H>
 #include <FL/Fl.H>
@@ -16,7 +17,7 @@ Fl_Text_Buffer *app_text_buffer = NULL;
 Fl_Double_Window *app_window = NULL;
 Fl_Menu_Bar *app_menu_bar = NULL;
 
-Replace_Dialog *replace_dialog = NULL;	
+Replace_Dialog *replace_dialog = NULL;
 
 char last_find_text[1024] = "";
 char last_replace_text[1024] = "";
@@ -39,7 +40,9 @@ void build_app_menu_bar()
 	app_menu_bar->add("Edit/Cut", FL_COMMAND+'x', menu_cut_callback);
 	app_menu_bar->add("Edit/Copy", FL_COMMAND+'c', menu_copy_callback);
 	app_menu_bar->add("Edit/Paste", FL_COMMAND+'v', menu_paste_callback);
-	app_menu_bar->add("Edit/Delete", 0, menu_delete_callback);
+	app_menu_bar->add("Edit/Delete", 0, menu_delete_callback, NULL, FL_MENU_DIVIDER);
+	app_menu_bar->add("Edit/Set Background Color", 0, menu_bg_color_callback);
+	app_menu_bar->add("Edit/Set Text Color", 0, menu_text_color_callback);
 
 	app_menu_bar->add("Find/Find...", FL_COMMAND+'f', menu_find_callback);
 	app_menu_bar->add("Find/Find Next", FL_COMMAND+'g', menu_find_next_callback, NULL, FL_MENU_DIVIDER);

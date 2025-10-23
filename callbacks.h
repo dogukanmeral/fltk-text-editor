@@ -10,6 +10,7 @@
 #include <FL/filename.H>
 #include <FL/Fl_Native_File_Chooser.H>
 #include <FL/Fl_Text_Editor.H>
+#include <FL/Fl_Color_Chooser.H> 
 
 
 extern Fl_Text_Buffer *app_text_buffer;
@@ -40,6 +41,9 @@ void menu_paste_callback(Fl_Widget*, void *v);
 void menu_delete_callback(Fl_Widget*, void *v);
 void menu_undo_callback(Fl_Widget*, void *v);
 void menu_redo_callback(Fl_Widget*, void *v);
+void menu_bg_color_callback(Fl_Widget*, void *v);
+void menu_text_color_callback(Fl_Widget*, void *v);
+
 
 /* MENU FIND CALLBACKS */
 

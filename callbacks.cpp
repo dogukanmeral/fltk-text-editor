@@ -141,6 +141,32 @@ void menu_redo_callback(Fl_Widget*, void *v)
 	Fl_Text_Editor::kf_redo(0, app_editor);
 }
 
+void menu_bg_color_callback(Fl_Widget *, void *v)
+{
+	double r, g, b;
+	int state;
+
+	state = fl_color_chooser("Background Color Chooser", r, g, b);
+	if (state == 1) // confirm
+	{
+		Fl_Color bg_color = fl_color_cube(r, g, b);
+		app_editor->color(bg_color);
+	}
+}
+
+void menu_text_color_callback(Fl_Widget*, void *v)
+{
+	double r, g, b;
+	int state;
+
+	state = fl_color_chooser("Text Color Chooser", r, g, b);
+	if (state == 1) // confirm
+	{
+		Fl_Color text_color = fl_color_cube(r, g, b);
+		app_editor->textcolor(text_color);
+	}
+}
+
 ///////////////////////// MENU FIND CALLBACKS /////////////////////////
 
 void menu_find_callback(Fl_Widget*, void *v)
